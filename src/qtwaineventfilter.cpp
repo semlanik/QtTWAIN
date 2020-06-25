@@ -43,7 +43,7 @@ QTWAINEventFilter::~QTWAINEventFilter()
     QCoreApplication::instance()->removeNativeEventFilter(this);
 }
 
-bool QTWAINEventFilter::nativeEventFilter(const QByteArray &, void *message, long *result)
+bool QTWAINEventFilter::nativeEventFilter(const QByteArray &, void *message, long *)
 {
     return scanner->processEvent(message);
 }

@@ -69,6 +69,8 @@ public:
     bool processEvent(TW_EVENT *event, TW_IDENTITY *dataSource);
     quint16 imageNativeTransfer(TW_HANDLE *imgHandle, TW_IDENTITY *dataSource);
     bool endTransfer(TW_PENDINGXFERS *pendingTransfers, TW_IDENTITY *dataSource);
+
+    void updateStatus(TW_IDENTITY *dataSource = nullptr);
 private:
     QTWAINContext();
     ~QTWAINContext();
@@ -84,6 +86,7 @@ private:
 
     TW_MEMREF m_windowHandle;
     TW_IDENTITY m_appIdentity; /**< current application identity */
+    TW_STATUS m_status;
 
     QHash<QString, std::shared_ptr<QtTWAIN::QTWAINScanner>> m_scannerList;
 };
