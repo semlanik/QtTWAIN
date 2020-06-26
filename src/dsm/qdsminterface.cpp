@@ -74,7 +74,7 @@ using namespace QtTWAIN;
 
 QDSMInterface::QDSMInterface() : dPtr(new QDSMInterfacePrivate)
 {
-    dPtr->load("TWAINDSM.dll");
+    dPtr->load("TWAIN_32.dll");
 }
 
 QDSMInterface::~QDSMInterface()

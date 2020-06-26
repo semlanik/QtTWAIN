@@ -35,7 +35,7 @@ void QTWAINScannerManager::init(WId winId)
 {
     QTWAINContext *ctx = QTWAINContext::instance();
     ctx->openDSM(winId);
-//    ctx->fetchScannerList();
+    ctx->fetchScannerList();
 }
 
 QList<QString> QTWAINScannerManager::scannerList()

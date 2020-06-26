@@ -34,19 +34,19 @@
 
 ScanEngine::ScanEngine() : m_scanner(nullptr)
 {
-//    QList<QString> scanners = QtTWAIN::QTWAINScannerManager::scannerList();
-//    qDebug() << scanners;
-//    if (scanners.size() > 0) {
-//        m_scanner = QtTWAIN::QTWAINScannerManager::acquireScanner(scanners.at(0));
-//        QObject::connect(m_scanner, &QtTWAIN::QTWAINScanner::imageReady, this, [this](const QImage &img) {
-//            QByteArray imgData;
-//            QBuffer buff(&imgData);
-//            buff.open(QIODevice::WriteOnly);
-//            img.save(&buff, "PNG");
-//            m_scannedImage = imgData.toBase64();
-//            scannedImageChanged();
-//        });
-//    }
+    QList<QString> scanners = QtTWAIN::QTWAINScannerManager::scannerList();
+    qDebug() << scanners;
+    if (scanners.size() > 0) {
+        m_scanner = QtTWAIN::QTWAINScannerManager::acquireScanner(scanners.at(0));
+        QObject::connect(m_scanner, &QtTWAIN::QTWAINScanner::imageReady, this, [this](const QImage &img) {
+            QByteArray imgData;
+            QBuffer buff(&imgData);
+            buff.open(QIODevice::WriteOnly);
+            img.save(&buff, "PNG");
+            m_scannedImage = imgData.toBase64();
+            scannedImageChanged();
+        });
+    }
 }
 
 ScanEngine::~ScanEngine() {
@@ -66,6 +66,5 @@ QString ScanEngine::scannerName() const
 }
 
 void ScanEngine::scan() {
-    QtTWAIN::QTWAINContext::instance()->userSelectScanner();
-//    m_scanner->scan();
+    m_scanner->scan();
 }
