@@ -91,9 +91,11 @@ bool QTWAINScannerPrivate::open()
         m_filter.reset(new QTWAINEventFilter(this));
         m_isOpen = true; //TODO: probably might be handled by state
         status = QtTWAIN::Ready; //TODO: call status changed notification
-    } else {
-        status = QtTWAIN::Error;
+        return true;
     }
+
+    status = QtTWAIN::Error;
+    return false;
 }
 
 void QTWAINScannerPrivate::close()

@@ -51,6 +51,7 @@ public:
     void openDSM(const WId winId);
     void closeDSM();
     void fetchScannerList();
+    void userSelectScanner();
 
     QList<QString> scannerList() const {
         return m_scannerList.keys();

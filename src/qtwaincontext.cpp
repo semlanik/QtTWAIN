@@ -124,6 +124,15 @@ void QTWAINContext::fetchScannerList()
     } while(result == TWRC_SUCCESS);
 }
 
+void QTWAINContext::userSelectScanner()
+{
+    TW_IDENTITY dataSource;
+    if (TWRC_SUCCESS != m_dsm->entry(&m_appIdentity, nullptr, DG_CONTROL, DAT_IDENTITY, MSG_USERSELECT, &dataSource)) {
+        updateStatus();
+        qDebug() << "Unable to get scanner: " << m_status.ConditionCode;
+    }
+}
+
 bool QTWAINContext::openDS(TW_IDENTITY *dataSource)
 {
     if (TWRC_SUCCESS != m_dsm->entry(&m_appIdentity, nullptr, DG_CONTROL, DAT_IDENTITY, MSG_OPENDS, dataSource)) {
