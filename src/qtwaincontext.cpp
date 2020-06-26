@@ -113,7 +113,7 @@ void QTWAINContext::fetchScannerList()
     do {
         if (result == TWRC_SUCCESS) {
             qDebug() << "Found scanner: " << scanner_p->dataSource.ProductName;
-            m_scannerList[QString(m_appIdentity.ProductName)] = std::shared_ptr<QTWAINScanner>(new QTWAINScanner(scanner_p));
+            m_scannerList[QString(scanner_p->dataSource.ProductName)] = std::shared_ptr<QTWAINScanner>(new QTWAINScanner(scanner_p));
         } else {
             updateStatus();
             qDebug() << "Unable to add scanner: " << m_status.ConditionCode;
