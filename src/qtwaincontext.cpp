@@ -88,7 +88,7 @@ void QTWAINContext::closeDSM()
     }
 
     if (TWRC_SUCCESS == m_dsm->entry(&m_appIdentity, nullptr, DG_CONTROL, DAT_PARENT, MSG_CLOSEDSM, &m_windowHandle)) {
-        m_windowHandle = NULL;
+        m_windowHandle = nullptr;
     }
 }
 
@@ -111,8 +111,8 @@ void QTWAINContext::fetchScannerList()
     auto scanner_p = new QTWAINScannerPrivate(this);
     int result = m_dsm->entry(&m_appIdentity, nullptr, DG_CONTROL, DAT_IDENTITY, MSG_GETFIRST, &scanner_p->dataSource);
     do {
-        qDebug() << "Found scanner: " << scanner_p->dataSource.ProductName;
         if (result == TWRC_SUCCESS) {
+            qDebug() << "Found scanner: " << scanner_p->dataSource.ProductName;
             m_scannerList[QString(m_appIdentity.ProductName)] = std::shared_ptr<QTWAINScanner>(new QTWAINScanner(scanner_p));
         } else {
             updateStatus();
