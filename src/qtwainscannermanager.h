@@ -29,11 +29,13 @@
 
 #include <qwindowdefs.h>
 
+#include "qttwainglobal.h"
+
 namespace QtTWAIN {
 
 class QTWAINScanner;
 
-class QTWAINScannerManager final
+Q_TWAIN_EXPORT class QTWAINScannerManager final
 {
 public:
     static void init(WId winId);

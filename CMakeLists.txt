@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.6)
+
+set(QT_TWAIN_VERSION 0.1.0)
+set(QT_TWAIN_PROJECT QtTWAINProject)
+
+project(${QT_TWAIN_PROJECT} VERSION ${QT_TWAIN_VERSION} LANGUAGES CXX)
+
+include(GNUInstallDirs)
+
+set(QT_TWAIN_CMAKE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+set(QT_TWAIN_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+set(QT_TWAIN_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+
+if(Qt5_POSITION_INDEPENDENT_CODE)
+    set(CMAKE_POSITION_INDEPENDENT_CODE TRUE)
+endif()
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_subdirectory(src)
+add_subdirectory(examples)
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/ProjectConfig.cmake.in" "${QT_TWAIN_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake")
+install(FILES "${QT_TWAIN_BINARY_DIR}/${PROJECT_NAME}Config.cmake" DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
+    COMPONENT dev)
+
+export(PACKAGE ${PROJECT_NAME})

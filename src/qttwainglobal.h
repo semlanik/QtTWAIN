@@ -25,53 +25,8 @@
 
 #pragma once
 
-#include <QObject>
-#include <QImage>
-
-#include "qttwainglobal.h"
-#include "qtwaindefs.h"
-
-#include <memory>
-
-namespace QtTWAIN {
-class QTWAINScannerPrivate;
-class QTWAINContext;
-
-Q_TWAIN_EXPORT class QTWAINScanner final : public QObject
-{
-    Q_OBJECT
-public:
-    quint32 id() const;
-
-    quint16 versionMajor() const;
-    quint16 versionMinor() const;
-
-    quint16 protocolMajor() const;
-    quint16 protocolMinor() const;
-
-    QString manufacturer() const;
-    QString family() const;
-    QString name() const;
-
-    bool isDefault() const;
-
-    QtTWAIN::Status status() const;
-
-    bool scan();
-
-    virtual ~QTWAINScanner() = default;//TODO: move to protected section
-
-signals:
-    void imageReady(const QImage &);
-
-protected:
-    friend class QTWAINContext;
-    friend class QTWAINScannerManager;
-    QTWAINScanner(QTWAINScannerPrivate *d);
-
-private:
-    QTWAINScanner() = default;
-    Q_DISABLE_COPY_MOVE(QTWAINScanner)
-    std::unique_ptr<QTWAINScannerPrivate> dPtr;
-};
-}
+#ifdef QT_BUILD_TWAIN_LIB
+    #define Q_TWAIN_EXPORT Q_DECL_EXPORT
+#else
+    #define Q_TWAIN_EXPORT Q_DECL_IMPORT
+#endif
