@@ -17,9 +17,6 @@ endif()
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(src)
-add_subdirectory(examples)
-
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/ProjectConfig.cmake.in" "${QT_TWAIN_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
@@ -28,3 +25,6 @@ install(FILES "${QT_TWAIN_BINARY_DIR}/${PROJECT_NAME}Config.cmake" DESTINATION "
     COMPONENT dev)
 
 export(PACKAGE ${PROJECT_NAME})
+
+add_subdirectory(src)
+add_subdirectory(examples)
